@@ -1,4 +1,5 @@
 
+import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import LoginUpPage from "./pages/LoginUpPage";
@@ -23,6 +24,7 @@ const App = () => {
 
       </Routes>
     </div>
+    <Toaster />
     </div>
   ) 
 }
