@@ -4,9 +4,21 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import LoginUpPage from "./pages/LoginUpPage";
 import SignUpPage from "./pages/SignUpPage";
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
+import useUserStore from "./stores/useUserStore";
+import { useEffect } from "react";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const App = () => {
+  
+  const {user,checkAuth,checkingAuth} = useUserStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth])
+
+  if(checkingAuth) return <LoadingSpinner />
+
   return(
     <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
       <div className='absolute inset-0 overflow-hidden'>
@@ -19,8 +31,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path = '/' element = {<HomePage />} />
-        <Route path = '/signup' element = {<SignUpPage />} />
-        <Route path = '/login' element = {<LoginUpPage />} />
+        <Route path = '/signup' element = {!user ? <SignUpPage /> : <Navigate to={'/'} />} />
+        <Route path = '/login' element = {!user ? <LoginUpPage /> : <Navigate to={'/'} />} />
 
       </Routes>
     </div>

@@ -27,7 +27,7 @@ const setCookies = (res, accessToken, refreshToken) => {
         httpOnly:true, //prevent XSS attack
         secure:process.env.NODE_ENV === "production",
         sameSite:"strict", //csrf attack
-        maxAge:15 * 60 * 60
+        maxAge: 15 * 60 * 1000
 
     })
 

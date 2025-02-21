@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import useUserStore from '../stores/useUserStore'
 
 const SignUpPage = () => {
-  const loading = false;
   const [formData, setFormData] = useState({
     name: "",
     email:"",
@@ -15,7 +14,7 @@ const SignUpPage = () => {
   })
 
   
-  const {signup, user} = useUserStore()
+  const {signup,loading} = useUserStore()
 
 
   const handleSubmit = (e) => {
