@@ -8,6 +8,7 @@ import {Routes, Route, Navigate} from 'react-router-dom'
 import useUserStore from "./stores/useUserStore";
 import { useEffect } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
+import AdminPage from "./pages/AdminPage";
 
 const App = () => {
   
@@ -33,6 +34,8 @@ const App = () => {
         <Route path = '/' element = {<HomePage />} />
         <Route path = '/signup' element = {!user ? <SignUpPage /> : <Navigate to={'/'} />} />
         <Route path = '/login' element = {!user ? <LoginUpPage /> : <Navigate to={'/'} />} />
+        <Route path = '/dashboard' element = {user?.role === 'admin' ? <AdminPage /> : <Navigate to={'/login'} />} />
+
 
       </Routes>
     </div>
