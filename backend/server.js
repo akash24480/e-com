@@ -16,7 +16,7 @@ const app = express()
 const port = process.env.PORT || 9000
 
 
-app.use(express.json())  //allows you to parse the body of the request
+app.use(express.json({limit:"10mb"}))  //allows you to parse the body of the request
 app.use(cookieParser())
 
 
